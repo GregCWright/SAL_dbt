@@ -31,7 +31,21 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  SAL:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+  +materialized: table
+  SAL_dbt:
+    sources:
+      +schema: "sources"
+    intermediate:
+      +schema: "intermediate"
+    marts:
+      +schema: "marts"
+  
+seeds:
+  +schema: seeds
+  +quote_columns: false
+  +tags: ["layer_seeds"]
+  +docs:
+    node_color: "#a0da39"
+  SAL_dbt:
+    test_data:
+      +tags: ["test_data"]
