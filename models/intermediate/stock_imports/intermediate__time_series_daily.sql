@@ -1,7 +1,7 @@
 with source as (
     select
         *
-    from {{ ref("test_time_series_daily") }}
+    from {{ ref("source__time_series_daily") }}
 )
 
 , standardized as (
@@ -17,4 +17,10 @@ with source as (
     from source
 )
 
-select * from standardized
+, deduped as (
+    select
+        *
+    from {{ dedupe_multiple("standardized", "daily_price_date", "symbol", "execution_time") }}
+)
+
+select * from deduped

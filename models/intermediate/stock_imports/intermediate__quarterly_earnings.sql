@@ -1,7 +1,7 @@
 with source as (
     select
         *
-    from {{ ref("test_quarterly_earnings") }}
+    from {{ ref("source__quarterly_earnings") }}
 )
 
 , standardized as (
@@ -13,8 +13,14 @@ with source as (
         , {{ standardize_number('estimated_earnings_per_share', 'float') }} as estimated_earnings_per_share
         , {{ standardize_number('surprise', 'float') }} as surprise
         , {{ standardize_number('surprise_percentage', 'float') }} as surprise_percentage
-        , {{ standardize_datetime('execuation_time') }} as execution_time
+        , {{ standardize_datetime('execution_time') }} as execution_time
     from source
 )
 
-select * from standardized
+, deduped as (
+    select
+        *
+    from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
+)
+
+select * from deduped

@@ -1,7 +1,7 @@
 with source as (
     select
         *
-    from {{ ref("test_overview") }}
+    from {{ ref("source__overview") }}
 )
 
 , standardized as (

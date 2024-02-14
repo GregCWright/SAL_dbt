@@ -1,7 +1,7 @@
 with source as (
     select
         *
-    from {{ ref("test_quarterly_balance_sheet") }}
+    from {{ ref("source__quarterly_balance_sheet") }}
 )
 
 , standardized as (
@@ -49,4 +49,10 @@ with source as (
     from source
 )
 
-select * from standardized
+, deduped as (
+    select
+        *
+    from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
+)
+
+select * from deduped
