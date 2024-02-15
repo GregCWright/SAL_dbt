@@ -15,7 +15,10 @@ with source as (
 
 , deduped as (
     select
-        *
+        fiscal_date_ending
+        , symbol
+        , reported_earnings_per_share
+        , execution_time
     from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
 )
 

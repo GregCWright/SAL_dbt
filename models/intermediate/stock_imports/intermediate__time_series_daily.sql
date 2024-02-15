@@ -19,7 +19,14 @@ with source as (
 
 , deduped as (
     select
-        *
+        daily_price_date
+        , symbol
+        , open
+        , high
+        , low
+        , close
+        , volume
+        , execution_time
     from {{ dedupe_multiple("standardized", "daily_price_date", "symbol", "execution_time") }}
 )
 

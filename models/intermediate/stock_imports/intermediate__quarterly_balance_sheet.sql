@@ -51,7 +51,46 @@ with source as (
 
 , deduped as (
     select
-        *
+        fiscal_date_ending
+        , symbol
+        , reported_currency
+        , total_assets
+        , total_current_assets
+        , cash_and_cash_equivalents_at_carrying_value
+        , cash_and_short_term_investments
+        , inventory
+        , current_net_receivables
+        , total_non_current_assets
+        , property_plant_equipment
+        , accumulated_depreciation_amortization_property_plant_equipment
+        , intangible_assets
+        , intangible_assets_excluding_goodwill
+        , goodwill
+        , investments
+        , long_term_investments
+        , short_term_investments
+        , other_current_assets
+        , other_non_current_assets
+        , total_liabilities
+        , total_current_liabilities
+        , current_accounts_payable
+        , deferred_revenue
+        , current_debt
+        , short_term_debt
+        , total_non_current_liabilities
+        , capital_lease_obligations
+        , long_term_debt
+        , current_long_term_debt
+        , long_term_debt_non_current
+        , short_long_term_debt_total
+        , other_current_liabilities
+        , other_non_current_liabilities
+        , total_shareholder_equity
+        , treasury_stock
+        , retained_earnings
+        , common_stock
+        , common_stock_shares_outstanding
+        , execution_time
     from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
 )
 

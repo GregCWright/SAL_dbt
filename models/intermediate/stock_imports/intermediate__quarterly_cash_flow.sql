@@ -42,7 +42,37 @@ with source as (
 
 , deduped as (
     select
-        *
+        fiscal_date_ending
+        , symbol
+        , reported_currency
+        , operating_cashflow
+        , payments_for_operating_activities
+        , proceeds_from_operating_activities
+        , change_in_operating_liabilities
+        , change_in_operating_assets
+        , depreciation_depletion_and_amortization
+        , captial_expenditures
+        , change_in_receivables
+        , change_in_inventory
+        , profit_loss
+        , cashflow_from_investment
+        , cashflow_from_financing
+        , proceeds_from_repayments_of_short_term_debt
+        , payments_for_repurchase_of_common_stock
+        , payments_for_repurchase_of_equity
+        , payments_for_repurchase_of_preferred_stock
+        , dividend_payout
+        , dividend_payout_common_stock
+        , dividend_payout_preferred_stock
+        , proceeds_from_issuance_of_common_stock
+        , proceeds_from_issuance_of_long_term_debt_and_capital_securities_net
+        , proceeds_from_issuance_of_preferred_stock
+        , proceeds_from_repurchase_of_equity
+        , proceeds_from_sale_of_treasury_stock
+        , change_in_cash_and_cash_equivalents
+        , change_in_exchange_rate
+        , net_income
+        , execution_time
     from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
 )
 

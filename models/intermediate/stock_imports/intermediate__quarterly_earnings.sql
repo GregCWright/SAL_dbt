@@ -19,7 +19,14 @@ with source as (
 
 , deduped as (
     select
-        *
+        fiscal_date_ending
+        , symbol
+        , reported_date
+        , reported_earnings_per_share
+        , estimated_earnings_per_share
+        , surprise
+        , surprise_percentage
+        , execution_time
     from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
 )
 

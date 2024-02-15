@@ -39,7 +39,34 @@ with source as (
 
 , deduped as (
     select
-        *
+        fiscal_date_ending
+        , symbol
+        , reported_currency
+        , gross_profit
+        , total_revenue
+        , cost_of_revenue
+        , cost_of_goods_and_services_sold
+        , operating_income
+        , selling_general_and_administrative
+        , research_and_development
+        , operating_expenses
+        , investment_income_net
+        , net_interest_income
+        , interest_income
+        , interest_expense
+        , non_interest_income
+        , other_non_operating_income
+        , depreciation
+        , depreciation_and_amortization
+        , income_before_tax
+        , income_tax_expense
+        , interest_and_dept_expense
+        , net_income_from_continuting_operations
+        , comprehensive_income_net_of_tax
+        , earnings_before_interest_taxes
+        , earnings_befpre_interest_taxes_depreciation_amortization
+        , net_income
+        , execution_time
     from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
 )
 
