@@ -31,7 +31,7 @@ with source as (
         , {{ standardize_number('net_income_from_continuting_operations', 'bigint') }} as net_income_from_continuting_operations
         , {{ standardize_number('comprehensive_income_net_of_tax', 'bigint') }} as comprehensive_income_net_of_tax
         , {{ standardize_number('earnings_before_interest_taxes', 'bigint') }} as earnings_before_interest_taxes
-        , {{ standardize_number('earnings_befpre_interest_taxes_depreciation_amortization', 'bigint') }} as earnings_befpre_interest_taxes_depreciation_amortization
+        , {{ standardize_number('earnings_before_interest_taxes_depreciation_amortization', 'bigint') }} as earnings_before_interest_taxes_depreciation_amortization
         , {{ standardize_number('net_income', 'bigint') }} as net_income
         , {{ standardize_datetime('execution_time') }} as execution_time
     from source
@@ -63,7 +63,7 @@ with source as (
         , net_income_from_continuting_operations
         , comprehensive_income_net_of_tax
         , earnings_before_interest_taxes
-        , earnings_befpre_interest_taxes_depreciation_amortization
+        , earnings_before_interest_taxes_depreciation_amortization
         , net_income
         , execution_time
     from {{ dedupe_multiple("standardized", "fiscal_date_ending", "symbol", "execution_time") }}
