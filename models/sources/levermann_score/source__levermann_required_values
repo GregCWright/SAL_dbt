@@ -1,0 +1,17 @@
+with overview_data as (
+    select
+        return_on_equity_trailing_twelve_months
+        , profit_margin
+        , trailing_price_to_earnings_ratio
+        -- TODO: Price to Earnings 5 years
+    from {{ ref('dim_overview') }}
+)
+
+, balance_sheet_data as (
+    select
+        total_assets
+        , total_liabilities
+    from {{ ref('dim_annual_balance_sheet') }}
+)
+
+, 
